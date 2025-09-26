@@ -61,6 +61,10 @@ class _PromtPageState extends State<PromtPage> {
                   const SizedBox(height: 50,),
 
                   CustomButton(
+                    colorButton: Colors.amber.shade500,
+                    width: 150,
+                    height: 50,
+                    textButton: 'Generate',
                     isEnabled: _isButtonEnabled,
                     onPressed: (){
                       _generateImage();
@@ -79,19 +83,16 @@ class _PromtPageState extends State<PromtPage> {
     final prompt = _controllerPromt.text.trim();
     if (prompt.isEmpty) return;
     
-    // Сохраняем промпт и генерируем изображение
     final projectData = context.read<ProjectData>();
     projectData.savePrompt(prompt);
     
-    // Показываем loading при переходе
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ResultPage(),
       ),
     );
-    
-    // Запускаем генерацию после перехода
+
     await projectData.generateImage();
   }
 

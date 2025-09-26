@@ -1,10 +1,10 @@
-// providers/project_data.dart
+
 import 'package:flutter/material.dart';
 import 'package:image_genius/services/api_service.dart';
 
 class ProjectData with ChangeNotifier {
   String _prompt = '';
-  String? _generatedImageUrl;
+  String? _generatedImageUrl; 
   bool _isGenerating = false;
   String? _error;
   
@@ -29,9 +29,9 @@ class ProjectData with ChangeNotifier {
     notifyListeners();
     
     try {
-      // Добавляем небольшую задержку перед началом чтобы UI успел обновиться
+
       await Future.delayed(Duration(milliseconds: 100));
-      
+
       _generatedImageUrl = await _apiService.generateImage(_prompt);
     } catch (e) {
       _error = e.toString();
